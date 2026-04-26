@@ -7,6 +7,8 @@ First, run the development server:
 ```bash
 npm run dev
 # or
+(recomended) npm run dev -- -H 192.168.1.4
+# or
 yarn dev
 # or
 pnpm dev
@@ -14,7 +16,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open 
+- Local:         http://192.168.1.4:3000
+- Network:       http://192.168.1.4:3000
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
