@@ -6,10 +6,18 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Kustomisasi Warna --- */
+  --color-wedding-black: #1A1A1A;
+  --color-wedding-light: #F9F9F9;
+  --color-wedding-grey: #6B7280;
+  --color-wedding-sage: #7D8E7E;
+
+  /* --- Kustomisasi Font --- */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+
+  /* --- Kustomisasi Letter Spacing --- */
+  --tracking-widest-extra: 0.5em;
 }
 
 @media (prefers-color-scheme: dark) {
