@@ -45,7 +45,6 @@ export default function TemplateMonochromeV2() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   
-  // File ini diletakkan di folder: public/music/wedding-song.mp3
   const musicSource = "/music/wedding-song2.mp3"; 
 
   useEffect(() => {
@@ -73,13 +72,19 @@ export default function TemplateMonochromeV2() {
       });
     }
 
-    const root = document.documentElement;
-    const body = document.body;
-    root.style.setProperty('overflow', 'auto', 'important');
-    body.style.setProperty('overflow', 'auto', 'important');
-    root.style.height = 'auto';
-    body.style.height = 'auto';
-    window.scrollTo(0, 0);
+    // --- FIX SCROLL UNTUK MOBILE ---
+    // Menggunakan timeout kecil untuk memastikan state isOpen sudah terproses
+    setTimeout(() => {
+      const root = document.documentElement;
+      const body = document.body;
+      
+      root.style.overflow = 'auto';
+      body.style.overflow = 'auto';
+      root.style.height = 'auto';
+      body.style.height = 'auto';
+      
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 10);
   };
 
   const toggleMusic = () => {
@@ -123,7 +128,6 @@ export default function TemplateMonochromeV2() {
       }}
       className="min-h-screen font-sans antialiased"
     >
-      {/* HTML5 AUDIO ELEMENT (GANTI YOUTUBE) */}
       <audio ref={audioRef} src={musicSource} loop preload="auto" />
       
       {isOpen && (
@@ -148,14 +152,13 @@ export default function TemplateMonochromeV2() {
         </div>
       </div>
 
-      {/* --- 1. COVER LAYER (UPDATED: AUTO CENTER SILUET) --- */}
+      {/* --- 1. COVER LAYER (FIXED FOR MOBILE) --- */}
       <section 
-        className={`fixed inset-0 z-[999999] flex flex-col items-center justify-center transition-all duration-700 p-6 ${
+        className={`fixed inset-0 z-[999999] flex flex-col items-center justify-center transition-all duration-[1000ms] p-6 ${
           isDark ? "bg-[#0a0a0a]" : "bg-white"
-        } ${isOpen ? "opacity-0 invisible pointer-events-none translate-y-[-100%]" : "opacity-100 visible"}`}
-        style={isOpen ? { display: 'none' } : { display: 'flex' }}
+        } ${isOpen ? "opacity-0 invisible pointer-events-none -translate-y-full" : "opacity-100 visible"}`}
       >
-        {/* Background Siluet yang diperbaiki: flex center & responsive font */}
+        {/* Background Siluet */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden">
           <h1 className="text-[45vw] md:text-[50vw] font-serif font-black leading-none text-center">
             S&P
@@ -164,10 +167,18 @@ export default function TemplateMonochromeV2() {
 
         <div className="relative z-10 text-center space-y-12">
           <span className="block tracking-[1.2em] text-[10px] uppercase opacity-40">Wedding Invitation</span>
-          <h1 className="text-7xl md:text-[10rem] font-serif font-extralight tracking-tighter italic leading-none">Sahril & Partner</h1>
-          <button onClick={handleOpen} className={`group relative px-20 py-6 border transition-all cursor-pointer overflow-hidden active:scale-95 ${isDark ? "border-white bg-transparent" : "border-black bg-white"}`}>
+          <h1 className="text-5xl md:text-[10rem] font-serif font-extralight tracking-tighter italic leading-none px-4">Sahril & Partner</h1>
+          
+          <button 
+            onClick={handleOpen} 
+            className={`group relative px-20 py-6 border transition-all cursor-pointer overflow-hidden active:scale-95 z-[1000001] ${
+              isDark ? "border-white bg-transparent" : "border-black bg-white"
+            }`}
+          >
             <div className={`absolute inset-0 w-0 transition-all duration-500 group-hover:w-full ${isDark ? "bg-white" : "bg-black"}`} />
-            <span className={`relative z-10 text-[10px] uppercase tracking-[0.6em] font-bold transition-colors duration-500 ${isDark ? "text-white group-hover:text-black" : "text-black group-hover:text-white"}`}>
+            <span className={`relative z-10 text-[10px] uppercase tracking-[0.6em] font-bold transition-colors duration-500 ${
+              isDark ? "text-white group-hover:text-black" : "text-black group-hover:text-white"
+            }`}>
               Open Invitation
             </span>
           </button>
@@ -180,7 +191,6 @@ export default function TemplateMonochromeV2() {
           <div className={`fixed inset-y-0 left-4 md:left-16 w-[1px] z-0 pointer-events-none ${isDark ? "bg-white/10" : "bg-black/[0.03]"}`} />
           <div className={`fixed inset-y-0 right-4 md:right-16 w-[1px] z-0 pointer-events-none ${isDark ? "bg-white/10" : "bg-black/[0.03]"}`} />
 
-          {/* QUOTE */}
           <section className="min-h-screen flex items-center justify-center px-6 py-40 relative z-10">
             <Reveal className="max-w-4xl w-full text-center space-y-12">
               <p className="text-3xl font-serif italic opacity-80" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
@@ -191,7 +201,6 @@ export default function TemplateMonochromeV2() {
             </Reveal>
           </section>
 
-          {/* MEMPELAI */}
           <section className="py-20 px-6 max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-2 gap-24">
               <div className="space-y-12">
@@ -217,7 +226,6 @@ export default function TemplateMonochromeV2() {
             </div>
           </section>
 
-          {/* COUNTDOWN & DATE */}
           <section className={`mt-60 py-60 relative z-10 overflow-hidden ${isDark ? "bg-white text-black" : "bg-[#080808] text-white"}`}>
             <div className="max-w-5xl mx-auto px-6 space-y-32">
               <Reveal className="text-center space-y-16">
@@ -252,7 +260,6 @@ export default function TemplateMonochromeV2() {
             </div>
           </section>
 
-          {/* GALLERY */}
           <section className="py-60 px-4 max-w-7xl mx-auto relative z-10">
             <Reveal className="text-center mb-40">
               <h2 className="text-7xl font-serif italic tracking-tighter">Our Memoirs.</h2>
@@ -266,7 +273,6 @@ export default function TemplateMonochromeV2() {
             </div>
           </section>
 
-          {/* GIFT */}
           <section className="py-40 px-6 relative z-10 text-center">
             <Reveal className="max-w-md mx-auto space-y-12">
               <div className="space-y-4"><Gift className="w-6 h-6 mx-auto opacity-20" /><h2 className="text-5xl font-serif italic tracking-tighter">Wedding Gift</h2></div>
@@ -281,7 +287,6 @@ export default function TemplateMonochromeV2() {
             </Reveal>
           </section>
 
-          {/* FOOTER */}
           <footer className={`py-60 text-center relative z-10 border-t ${isDark ? "border-white/10" : "border-black/5"}`}>
             <Reveal className="space-y-12 opacity-80">
               <Heart className="w-5 h-5 mx-auto opacity-20 animate-pulse" />
@@ -290,7 +295,6 @@ export default function TemplateMonochromeV2() {
             </Reveal>
           </footer>
 
-          {/* MUSIC CONTROL */}
           <div className="fixed bottom-12 right-12 z-[100]">
             <button onClick={toggleMusic} className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all ${isDark ? "bg-white text-black" : "bg-black text-white"} ${isPlaying ? "animate-spin-slow" : ""}`}>
               {isPlaying ? <Music size={18} className="animate-pulse" /> : <Music size={18} className="opacity-40" />}
@@ -308,7 +312,7 @@ export default function TemplateMonochromeV2() {
           background-color: ${isDark ? "#0a0a0a" : "#fcfcfc"} !important;
           color: ${isDark ? "#ffffff" : "#1a1a1a"} !important;
         }
-        ${!isOpen ? 'body { height: 100vh; overflow: hidden !important; touch-action: none; }' : ''}
+        ${!isOpen ? 'body { height: 100vh !important; overflow: hidden !important; position: fixed; width: 100%; }' : 'body { position: relative; }'}
       `}</style>
     </div>
   );

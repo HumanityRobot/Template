@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Hanya ini yang benar-benar kita butuhkan untuk koneksi HP
-  allowedDevOrigins: ['192.168.1.4:3000', '192.168.1.4'],
+  allowedDevOrigins: ['192.168.1.2:3000', '192.168.1.2'],
   
   // Jika kamu pakai gambar eksternal
   images: {

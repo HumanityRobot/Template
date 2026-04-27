@@ -29,36 +29,66 @@ export default function TemplatePassport() {
     <div className="bg-[#f4f1ea] text-[#2c3e50] font-sans min-h-screen overflow-x-hidden selection:bg-[#d4af37] selection:text-white">
       
       {!isOpen ? (
-        /* 1. COVER: INDONESIAN PASSPORT STYLE */
-        <section className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0d2e2b] p-6 text-center">
+        /* 1. COVER: AUTHENTIC INDONESIAN PASSPORT STYLE */
+        <section className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a1f1d] p-6 text-center">
           <div 
             onClick={() => setIsOpen(true)}
-            className="w-full max-w-sm aspect-[3/4.5] bg-[#0d544e] border-[10px] border-[#0a4540] rounded-[15px] shadow-2xl flex flex-col items-center justify-between py-12 px-8 cursor-pointer hover:scale-[1.02] transition-all duration-500 relative overflow-hidden group"
+            className="w-full max-w-sm aspect-[1/1.45] bg-[#0d544e] rounded-[15px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center justify-between py-12 px-8 cursor-pointer hover:scale-[1.02] transition-all duration-500 relative overflow-hidden group border border-white/5"
           >
-            <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/leather.png')]" />
-            <div className="w-full text-right relative z-10">
-              <h2 className="text-[#d4af37] text-[10px] font-bold tracking-[0.3em] uppercase text-right">Republik Indonesia</h2>
-              <h2 className="text-[#d4af37] text-[8px] tracking-[0.2em] uppercase opacity-70 text-right">Republic of Indonesia</h2>
+            {/* Tekstur Kulit Paspor */}
+            <div className="absolute inset-0 opacity-40 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/leather.png')]" />
+            
+            {/* Header: REPUBLIK INDONESIA */}
+            <div className="w-full text-center relative z-10">
+              <h2 className="text-[#e2c17c] text-sm md:text-base font-bold tracking-[0.2em] uppercase leading-tight">
+                REPUBLIK INDONESIA
+              </h2>
             </div>
-            <div className="relative z-10 py-4">
-              <div className="w-28 h-28 border-[3px] border-[#d4af37] rounded-full flex items-center justify-center p-4 relative">
-                <div className="absolute inset-0 border border-[#d4af37] rounded-full scale-110 opacity-30" />
-                <Globe className="w-full h-full text-[#d4af37]" strokeWidth={1} />
+
+            {/* Emblem: GARUDA (MENGGUNAKAN FILE LOKAL) */}
+            <div className="relative z-10 flex items-center justify-center w-full py-2">
+              <div className="w-48 h-48 md:w-60 md:h-60 group-hover:scale-105 transition-transform duration-700">
+                <img 
+                  src="/Logo_Garuda2.png" 
+                  className="w-full h-full object-contain"
+                  alt="Garuda Pancasila Resmi"
+                />
               </div>
             </div>
-            <div className="w-full text-left relative z-10 space-y-1 text-left">
-              <h1 className="text-[#d4af37] text-3xl font-bold tracking-[0.1em] uppercase">Paspor</h1>
-              <h1 className="text-[#d4af37] text-lg font-light tracking-[0.2em] uppercase italic opacity-70 leading-none">Passport</h1>
+
+            {/* Label: PASPOR / PASSPORT */}
+            <div className="w-full text-center relative z-10 space-y-1">
+              <div className="inline-block border-b-[2px] border-[#e2c17c] pb-1">
+                <h1 className="text-[#e2c17c] text-3xl md:text-4xl font-bold tracking-[0.2em] uppercase">PASPOR</h1>
+              </div>
+              <h1 className="text-[#e2c17c] text-lg md:text-xl font-medium tracking-[0.3em] uppercase italic opacity-70 leading-none">PASSPORT</h1>
             </div>
-            <div className="w-full pt-8 relative z-10 border-t border-[#d4af37]/20">
-              <div className="flex justify-between items-end">
-                <div className="text-left">
-                   <p className="text-[#d4af37] text-[9px] font-bold uppercase tracking-widest text-left">Wedding of</p>
-                   <p className="text-white text-xs font-serif italic">Sahril & Partner</p>
+
+            {/* Bottom: Pasangan Info & E-Passport Logo (Tengah Bawah) */}
+            <div className="w-full relative z-10 flex flex-col items-center gap-6">
+              
+              {/* Teks Wedding Of & Nama - Sekarang di tengah bawah */}
+              <div className="text-center space-y-1">
+                <p className="text-[#e2c17c] text-[9px] font-bold uppercase tracking-[0.2em] opacity-60">
+                  Wedding of
+                </p>
+                <p className="text-white text-lg md:text-xl font-serif italic tracking-wide">
+                  Sahril & Partner
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-4 w-full">
+                {/* Logo Chip E-Paspor */}
+                <div className="w-10 h-6 border-[1.5px] border-[#e2c17c] rounded-sm flex items-center justify-center relative">
+                  <div className="w-4 h-[1px] bg-[#e2c17c]" />
+                  <div className="absolute w-2.5 h-2.5 rounded-full border border-[#e2c17c] bg-[#0d544e]" />
                 </div>
-                <button className="px-4 py-2 bg-[#d4af37] text-[#0d544e] text-[8px] font-bold uppercase tracking-widest rounded-sm">Open</button>
+                <p className="text-[#e2c17c] text-[8px] font-medium uppercase tracking-[0.2em] opacity-30 group-hover:opacity-100 transition-opacity">Click cover to open</p>
               </div>
             </div>
+
+            {/* Efek Kilauan saat Hover */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           </div>
         </section>
       ) : (
@@ -225,7 +255,7 @@ export default function TemplatePassport() {
              </div>
           </section>
 
-          {/* 10. CLOSING (Music Included Below) */}
+          {/* 10. CLOSING */}
           <footer className="py-32 bg-[#0d544e] text-white text-center px-6">
             <Globe className="w-8 h-8 mx-auto text-[#d4af37] animate-pulse mb-8" />
             <h2 className="text-3xl md:text-4xl font-serif italic">"To travel together is to love."</h2>
