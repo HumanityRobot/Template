@@ -49,7 +49,7 @@ export default function TemplatePassport() {
             <div className="relative z-10 flex items-center justify-center w-full py-2">
               <div className="w-48 h-48 md:w-60 md:h-60 group-hover:scale-105 transition-transform duration-700">
                 <img 
-                  src="/Logo_Garuda2.png" 
+                  src="/Logo_Garuda.png" 
                   className="w-full h-full object-contain"
                   alt="Garuda Pancasila Resmi"
                 />

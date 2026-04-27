@@ -15,6 +15,9 @@ export default function TemplateBukuNikah() {
   const [isCopied, setIsCopied] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
+  // Ganti path ini sesuai lokasi logo Garuda kamu
+  const logoGarudaPath = "/Logo_Garuda.png";
+
   useEffect(() => {
     const targetDate = new Date("2026-04-26T09:00:00").getTime();
     const timer = setInterval(() => {
@@ -41,45 +44,53 @@ export default function TemplateBukuNikah() {
     <div className="bg-[#fdfbf7] text-[#2c3e50] min-h-screen font-serif selection:bg-[#9e2a2b] selection:text-white relative overflow-x-hidden">
       
       {!isOpen ? (
-        /* 1. COVER: DUAL BOOKS (MAROON & GREEN) */
+        /* 1. COVER: DUAL GREEN BOOKS WITH GARUDA LOGO */
         <section className="fixed inset-0 z-[9999] bg-[#121212] flex flex-col items-center justify-center p-6 text-center">
           <div className="relative flex -space-x-12 animate-in fade-in zoom-in duration-1000">
-             {/* Buku Suami (Maroon) */}
-             <div className="w-44 h-64 bg-[#800000] rounded-r-xl shadow-[10px_10px_30px_rgba(0,0,0,0.5)] border-l-[10px] border-black/30 p-5 flex flex-col items-center justify-between text-[#d4af37] relative overflow-hidden group hover:-rotate-3 transition-transform">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/gold-dust.png')]" />
-                <div className="w-16 h-16 border-2 border-[#d4af37] rounded-full flex items-center justify-center p-1.5">
-                   <div className="w-full h-full border border-[#d4af37] rounded-full flex items-center justify-center">
-                      <Landmark size={20} />
-                   </div>
-                </div>
-                <div className="space-y-1 z-10">
-                   <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Buku Nikah</p>
-                   <p className="text-[7px] opacity-80 leading-tight">REPUBLIK INDONESIA</p>
-                </div>
-                <div className="w-full h-px bg-[#d4af37]/30" />
-                <p className="text-xs font-black tracking-widest">SUAMI</p>
-             </div>
+             
+             {[ "SUAMI", "ISTRI" ].map((label, index) => (
+                <div 
+                  key={index}
+                  className={`w-44 h-64 bg-[#1b4d3e] rounded-r-xl shadow-[10px_10px_40px_rgba(0,0,0,0.6)] border-l-[12px] border-black/40 p-4 flex flex-col items-center justify-between text-[#d4af37] relative overflow-hidden transition-transform duration-500 hover:scale-105 ${index === 0 ? "hover:-rotate-6" : "hover:rotate-6 z-10"}`}
+                >
+                  <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/leather.png')]" />
+                  
+                  <div className="z-10 text-center space-y-0">
+                     <p className="text-[11px] font-bold tracking-[0.1em] leading-tight">BUKU NIKAH</p>
+                     <p className="text-[10px] font-serif italic tracking-widest leading-tight uppercase">Marriage Book</p>
+                  </div>
 
-             {/* Buku Istri (Green) */}
-             <div className="w-44 h-64 bg-[#1b4d3e] rounded-r-xl shadow-[10px_10px_30px_rgba(0,0,0,0.5)] border-l-[10px] border-black/30 p-5 flex flex-col items-center justify-between text-[#d4af37] relative overflow-hidden group hover:rotate-3 transition-transform z-10">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/gold-dust.png')]" />
-                <div className="w-16 h-16 border-2 border-[#d4af37] rounded-full flex items-center justify-center p-1.5">
-                   <div className="w-full h-full border border-[#d4af37] rounded-full flex items-center justify-center">
-                      <Landmark size={20} />
-                   </div>
+                  {/* Logo Garuda Custom */}
+                  <div className="relative z-10 w-24 h-24 flex items-center justify-center">
+                     <div className="absolute inset-0 animate-pulse opacity-10 bg-[#d4af37] rounded-full blur-2xl" />
+                     <img 
+                        src={logoGarudaPath} 
+                        alt="Garuda Pancasila" 
+                        className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
+                     />
+                  </div>
+
+                  <div className="z-10 text-center space-y-1">
+                     <div className="space-y-0 text-[7px] font-bold tracking-[0.05em] uppercase leading-none opacity-90">
+                        <p>Kementerian Agama</p>
+                        <p>Republik Indonesia</p>
+                     </div>
+                     <div className="space-y-0 text-[6px] font-serif italic leading-none opacity-70">
+                        <p>Ministry of Religious Affairs</p>
+                        <p>Republic of Indonesia</p>
+                     </div>
+                     
+                     <div className="mt-2 pt-1 border-t border-[#d4af37]/40 w-full">
+                        <p className="text-[9px] font-black tracking-[0.3em]">{label}</p>
+                     </div>
+                  </div>
                 </div>
-                <div className="space-y-1 z-10">
-                   <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Buku Nikah</p>
-                   <p className="text-[7px] opacity-80 leading-tight">REPUBLIK INDONESIA</p>
-                </div>
-                <div className="w-full h-px bg-[#d4af37]/30" />
-                <p className="text-xs font-black tracking-widest">ISTRI</p>
-             </div>
+             ))}
           </div>
 
           <div className="mt-16 space-y-6 max-w-xs relative z-20">
              <div className="text-white space-y-2">
-                <h2 className="text-2xl font-bold tracking-[0.2em] uppercase italic">The Sacred Union</h2>
+                <h2 className="text-2xl font-bold tracking-[0.2em] uppercase italic">Wedding Of</h2>
                 <p className="text-[10px] opacity-60 font-sans tracking-[0.3em] uppercase">Sahril Rahmatulloh & Partner</p>
              </div>
              <button 
@@ -93,17 +104,15 @@ export default function TemplateBukuNikah() {
       ) : (
         <main className="max-w-2xl mx-auto pb-24 relative animate-in slide-in-from-bottom-10 duration-1000">
           
-          {/* MUSIC PLAYER FLOATING */}
           <div className="fixed bottom-6 right-6 z-[100]">
              <button className="w-14 h-14 bg-[#1b4d3e] text-[#d4af37] rounded-full shadow-2xl flex items-center justify-center border-2 border-[#d4af37] animate-[spin_8s_linear_infinite]">
                 <Music size={24} />
              </button>
           </div>
 
-          {/* DOCUMENT HEADER */}
           <div className="bg-white border-b-[6px] border-[#d4af37] p-10 text-center space-y-6 shadow-sm">
              <div className="relative inline-block">
-                <ShieldCheck size={48} className="text-[#800000] mx-auto" />
+                <ShieldCheck size={48} className="text-[#1b4d3e] mx-auto" />
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#d4af37] rounded-full border-2 border-white" />
              </div>
              <div className="space-y-2">
@@ -114,7 +123,6 @@ export default function TemplateBukuNikah() {
 
           <div className="p-6 md:p-12 space-y-16">
             
-            {/* PAS FOTO FORMAL (Background Biru Khas Buku Nikah) */}
             <section className="flex flex-col items-center gap-8">
                <div className="flex justify-center gap-6">
                   <div className="relative group">
@@ -143,17 +151,15 @@ export default function TemplateBukuNikah() {
                </div>
             </section>
 
-            {/* AYAT / KATA PENGANTAR */}
             <section className="text-center max-w-md mx-auto space-y-6">
                <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
                <p className="text-sm md:text-base leading-relaxed italic text-gray-600 font-serif">
                  "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."
                </p>
-               <p className="text-xs font-bold text-[#800000] uppercase tracking-widest">(Ar-Rum: 21)</p>
+               <p className="text-xs font-bold text-[#1b4d3e] uppercase tracking-widest">(Ar-Rum: 21)</p>
                <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
             </section>
 
-            {/* FORM DATA ACARA */}
             <section className="bg-white border-2 border-gray-100 rounded-xl overflow-hidden shadow-xl">
                <div className="bg-[#1b4d3e] p-5 flex items-center gap-3">
                   <Calendar className="text-[#d4af37]" size={20} />
@@ -164,7 +170,7 @@ export default function TemplateBukuNikah() {
                      <div className="space-y-1">
                         <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Waktu Akad</p>
                         <p className="text-lg font-bold text-[#1a1a1a]">Minggu, 26 April 2026</p>
-                        <div className="flex items-center gap-2 text-sm text-[#800000] font-bold">
+                        <div className="flex items-center gap-2 text-sm text-[#1b4d3e] font-bold">
                            <Clock size={14} /> 09:00 WIB — Selesai
                         </div>
                      </div>
@@ -191,13 +197,12 @@ export default function TemplateBukuNikah() {
                </div>
                <div className="p-4 bg-gray-50 border-t border-gray-100">
                   <button className="w-full py-3 bg-white border border-gray-200 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
-                     <MapPin size={14} className="text-[#800000]" /> Buka Koordinat Lokasi
+                     <MapPin size={14} className="text-[#1b4d3e]" /> Buka Koordinat Lokasi
                   </button>
                </div>
             </section>
 
-            {/* COUNTDOWN */}
-            <section className="bg-[#800000] text-[#d4af37] p-8 rounded-xl shadow-2xl text-center space-y-6">
+            <section className="bg-[#1b4d3e] text-[#d4af37] p-8 rounded-xl shadow-2xl text-center space-y-6">
                <p className="text-[10px] font-bold uppercase tracking-[0.3em]">Menuju Ikrar Suci</p>
                <div className="grid grid-cols-4 gap-4 max-w-sm mx-auto">
                   {Object.entries(timeLeft).map(([unit, val]) => (
@@ -209,7 +214,6 @@ export default function TemplateBukuNikah() {
                </div>
             </section>
 
-            {/* RSVP - REGISTRASI TAMU */}
             <section className="space-y-8 py-10">
                <div className="flex items-center gap-4">
                   <PenTool className="text-[#1b4d3e]" size={24} />
@@ -228,13 +232,12 @@ export default function TemplateBukuNikah() {
                         <option>Masih Menyesuaikan Jadwal</option>
                      </select>
                   </div>
-                  <button className="w-full bg-[#1a1a1a] text-white py-5 rounded-sm text-xs font-black uppercase tracking-[0.4em] hover:bg-[#800000] transition-all flex items-center justify-center gap-3 group">
+                  <button className="w-full bg-[#1a1a1a] text-white py-5 rounded-sm text-xs font-black uppercase tracking-[0.4em] hover:bg-[#1b4d3e] transition-all flex items-center justify-center gap-3 group">
                      Submit RSVP <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                </div>
             </section>
 
-            {/* DIGITAL GIFT - TANDA KASIH */}
             <section className="bg-[#fdfcf7] border-4 border-double border-[#d4af37] p-10 text-center space-y-6">
                <div className="w-16 h-16 bg-white rounded-full mx-auto flex items-center justify-center shadow-inner">
                   <Fingerprint size={32} className="text-[#1b4d3e] opacity-20" />
@@ -250,7 +253,7 @@ export default function TemplateBukuNikah() {
                   <p className="text-xs font-bold text-gray-500 uppercase">a.n Sahril Rahmatulloh</p>
                   <button 
                     onClick={() => copyToClipboard("1234567890")}
-                    className="inline-flex items-center gap-2 text-[10px] font-black uppercase text-[#800000] tracking-widest border-b-2 border-[#800000] pb-1 mt-4 hover:opacity-70 transition-opacity"
+                    className="inline-flex items-center gap-2 text-[10px] font-black uppercase text-[#1b4d3e] tracking-widest border-b-2 border-[#1b4d3e] pb-1 mt-4 hover:opacity-70 transition-opacity"
                   >
                     {isCopied ? <Check size={14} /> : <Copy size={14} />} {isCopied ? "Berhasil Disalin" : "Salin No. Rekening"}
                   </button>
@@ -259,10 +262,9 @@ export default function TemplateBukuNikah() {
 
           </div>
 
-          {/* OFFICIAL FOOTER */}
           <footer className="py-20 text-center space-y-6 bg-white border-t border-gray-100">
              <div className="w-20 h-20 border-4 border-[#d4af37] rounded-full mx-auto flex items-center justify-center opacity-40 transform rotate-12">
-                <span className="font-black text-xl text-[#800000]">SA</span>
+                <span className="font-black text-xl text-[#1b4d3e]">SA</span>
              </div>
              <div className="space-y-1">
                 <p className="text-[10px] font-black uppercase tracking-[0.6em] text-[#1a1a1a]">Official Marriage Invitation</p>
@@ -273,7 +275,6 @@ export default function TemplateBukuNikah() {
         </main>
       )}
 
-      {/* Global CSS for subtle document grain */}
       <style jsx global>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         .animate-in { animation: fade-in 1s ease-out; }
